@@ -9,7 +9,7 @@ class LoginHandler : public QObject
 {
     Q_OBJECT
 public:
-    explicit LoginHandler(QObject *parent = nullptr);
+    explicit LoginHandler(AirlineSystem* system, QObject *parent = nullptr);
 
     Q_INVOKABLE QString attemptLogin(const QString &username, const QString &password);
     Q_INVOKABLE bool isUserLoggedIn() const;

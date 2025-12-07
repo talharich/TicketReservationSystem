@@ -2,10 +2,9 @@
 #include <iostream>
 #include <sstream>
 
-LoginHandler::LoginHandler(QObject *parent)
-    : QObject(parent)
+LoginHandler::LoginHandler(AirlineSystem* system, QObject *parent)
+    : QObject(parent), airlineSystem(system)
 {
-    airlineSystem = new AirlineSystem();
 }
 
 QString LoginHandler::attemptLogin(const QString &username, const QString &password)

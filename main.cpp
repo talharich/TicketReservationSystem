@@ -2,6 +2,8 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include "loginhandler.h"
+#include "flighthandler.h"
+#include "SimpleAirline.h"
 
 int main(int argc, char *argv[])
 {
@@ -9,8 +11,16 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    LoginHandler loginHandler;
-    engine.rootContext()->setContextProperty("loginHandler", &loginHandler);
+    // Create shared airline system
+    AirlineSystem* airlineSystem = new AirlineSystem();
+
+    // Create handlers
+    LoginHandler* loginHandler = new LoginHandler(airlineSystem);
+    FlightHandler* flightHandler = new FlightHandler(airlineSystem);
+
+    // Register with QML
+    engine.rootContext()->setContextProperty("loginHandler", loginHandler);
+    engine.rootContext()->setContextProperty("flightHandler", flightHandler);
 
     // Try to load from module first
     engine.loadFromModule("TicketResevationSystem2", "Main");

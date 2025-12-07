@@ -15,6 +15,8 @@ qt_add_executable(appTicketResevationSystem2
     SimpleAirline.cpp
     loginhandler.h
     loginhandler.cpp
+    flighthandler.h
+    flighthandler.cpp
 )
 
 qt_add_qml_module(appTicketResevationSystem2
@@ -22,6 +24,8 @@ qt_add_qml_module(appTicketResevationSystem2
     VERSION 1.0
     QML_FILES
     QML_FILES Main.qml
+    SOURCES loginhandler.h
+    QML_FILES SeatSelection.qml
 )
 
 set_target_properties(appTicketResevationSystem2 PROPERTIES
