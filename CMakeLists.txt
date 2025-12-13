@@ -17,15 +17,16 @@ qt_add_executable(appTicketResevationSystem2
     loginhandler.cpp
     flighthandler.h
     flighthandler.cpp
+    resources.qrc
 )
 
 qt_add_qml_module(appTicketResevationSystem2
     URI TicketResevationSystem2
     VERSION 1.0
-    QML_FILES
     QML_FILES Main.qml
-    SOURCES loginhandler.h
     QML_FILES SeatSelection.qml
+    QML_FILES SeatButton.qml
+    SOURCES loginhandler.h
 )
 
 set_target_properties(appTicketResevationSystem2 PROPERTIES

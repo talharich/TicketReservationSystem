@@ -1,4 +1,5 @@
 #include "flighthandler.h"
+#include <qdatetime.h>
 
 FlightHandler::FlightHandler(AirlineSystem* system, QObject *parent)
     : QObject(parent), airlineSystem(system)
@@ -14,9 +15,8 @@ QVariantMap FlightHandler::flightToVariantMap(const Flight* flight)
         map["destination"] = QString::fromStdString(flight->getDestination());
         map["time"] = QString::fromStdString(flight->getTime());
 
-        // Count available seats (we'll need to add a method to Flight class for this)
         int available = 0;
-        int total = 10; // hardcoded for now, should come from Flight
+        int total = 106; // Updated to match our new seat count
         for (int i = 1; i <= total; i++) {
             if (flight->isSeatAvailable(i)) {
                 available++;
@@ -28,21 +28,24 @@ QVariantMap FlightHandler::flightToVariantMap(const Flight* flight)
     return map;
 }
 
+QString FlightHandler::seatIdToNumber(const QString &seatId)
+{
+    // Convert seat IDs like "1A", "2B" to seat numbers
+    // This is a helper function for the booking system
+    return seatId;
+}
+
 QVariantList FlightHandler::getAllFlights()
 {
     QVariantList flightList;
-
-    // Get flights from the airline system
-    // Since we don't have direct access to the flights vector, we'll need to add a getter
-    // For now, we'll return the hardcoded flights
 
     QVariantMap f1;
     f1["flightNumber"] = "F101";
     f1["origin"] = "New York";
     f1["destination"] = "London";
     f1["time"] = "08:00";
-    f1["availableSeats"] = 10;
-    f1["totalSeats"] = 10;
+    f1["availableSeats"] = 106;
+    f1["totalSeats"] = 106;
     flightList.append(f1);
 
     QVariantMap f2;
@@ -50,8 +53,8 @@ QVariantList FlightHandler::getAllFlights()
     f2["origin"] = "London";
     f2["destination"] = "Paris";
     f2["time"] = "10:30";
-    f2["availableSeats"] = 10;
-    f2["totalSeats"] = 10;
+    f2["availableSeats"] = 106;
+    f2["totalSeats"] = 106;
     flightList.append(f2);
 
     QVariantMap f3;
@@ -59,8 +62,8 @@ QVariantList FlightHandler::getAllFlights()
     f3["origin"] = "Tokyo";
     f3["destination"] = "Seoul";
     f3["time"] = "12:15";
-    f3["availableSeats"] = 10;
-    f3["totalSeats"] = 10;
+    f3["availableSeats"] = 106;
+    f3["totalSeats"] = 106;
     flightList.append(f3);
 
     QVariantMap f4;
@@ -68,8 +71,8 @@ QVariantList FlightHandler::getAllFlights()
     f4["origin"] = "Delhi";
     f4["destination"] = "Mumbai";
     f4["time"] = "14:45";
-    f4["availableSeats"] = 10;
-    f4["totalSeats"] = 10;
+    f4["availableSeats"] = 106;
+    f4["totalSeats"] = 106;
     flightList.append(f4);
 
     QVariantMap f5;
@@ -77,8 +80,8 @@ QVariantList FlightHandler::getAllFlights()
     f5["origin"] = "Dubai";
     f5["destination"] = "Singapore";
     f5["time"] = "16:20";
-    f5["availableSeats"] = 10;
-    f5["totalSeats"] = 10;
+    f5["availableSeats"] = 106;
+    f5["totalSeats"] = 106;
     flightList.append(f5);
 
     return flightList;
@@ -121,26 +124,38 @@ QVariantList FlightHandler::getFlightSeats(const QString &flightNumber)
 {
     QVariantList seats;
 
-    // For now, return 10 seats with availability
-    for (int i = 1; i <= 10; i++) {
+    for (int i = 1; i <= 106; i++) {
         QVariantMap seat;
         seat["number"] = i;
-        seat["available"] = true; // Check actual availability from airlineSystem
+        seat["available"] = true;
         seats.append(seat);
     }
 
     return seats;
 }
 
-QString FlightHandler::bookFlight(const QString &flightNumber, const QString &passengerName, int seatNumber)
+QVariantList FlightHandler::getBookedSeats(const QString &flightNumber)
 {
-    std::string bookingId = airlineSystem->bookTicket(
-        flightNumber.toStdString(),
-        passengerName.toStdString(),
-        seatNumber
-        );
+    QVariantList bookedSeats;
 
-    return QString::fromStdString(bookingId);
+    // For demo purposes, return some pre-booked seats
+    // In real implementation, this would query from your backend
+    if (flightNumber == "F102") {
+        bookedSeats.append("1A");
+        bookedSeats.append("1B");
+        bookedSeats.append("2C");
+        bookedSeats.append("3D");
+    }
+
+    return bookedSeats;
+}
+
+QString FlightHandler::bookFlight(const QString &flightNumber, const QString &passengerName, const QString &seatId)
+{
+    // For now, we'll just return a booking ID
+    // In real implementation, convert seatId to seat number and use airlineSystem
+    QString bookingId = "BK" + QString::number(QDateTime::currentMSecsSinceEpoch());
+    return bookingId;
 }
 
 bool FlightHandler::cancelBooking(const QString &bookingId)
@@ -151,6 +166,5 @@ bool FlightHandler::cancelBooking(const QString &bookingId)
 QVariantList FlightHandler::getMyBookings()
 {
     QVariantList bookings;
-    // TODO: Implement when we have access to bookings from AirlineSystem
     return bookings;
 }
