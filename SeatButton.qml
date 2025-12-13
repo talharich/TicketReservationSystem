@@ -48,8 +48,13 @@ Rectangle {
         cursorShape: isBooked ? Qt.ForbiddenCursor : Qt.PointingHandCursor
 
         onClicked: {
-            // Emit the signal so parent can handle it
-            root.clicked()
+            if (isBooked) {
+                // Shake animation for visual feedback
+                shakeAnimation.start()
+            } else {
+                // Emit the signal so parent can handle it
+                root.clicked()
+            }
         }
     }
 

@@ -787,14 +787,25 @@ Window {
                 }
 
                 // My Bookings View
-                Rectangle {
+                ScrollView {
+                    id: bookingsScrollView
                     anchors.fill: parent
                     anchors.margins: 30
                     visible: currentView === "bookings"
-                    color: "transparent"
+                    clip: true
+
+                    property var myBookings: []
+
+                    // Load bookings when view becomes visible
+                    onVisibleChanged: {
+                        if (visible) {
+                            myBookings = flightHandler.getMyBookings(currentUsername)
+                            console.log("Loaded bookings:", myBookings.length)
+                        }
+                    }
 
                     Column {
-                        width: parent.width
+                        width: parent.width - 60
                         spacing: 20
 
                         Text {
@@ -804,10 +815,313 @@ Window {
                             font.bold: true
                         }
 
-                        Text {
-                            text: "No bookings yet"
-                            color: "#7d8590"
-                            font.pixelSize: 18
+                        // Bookings List
+                        Repeater {
+                            model: bookingsScrollView.myBookings
+                            delegate: Rectangle {
+                                width: 1100
+                                height: 150
+                                color: "#161b22"
+                                radius: 12
+                                border.color: "#30363d"
+                                border.width: 1
+
+                                property var bookingData: modelData
+
+                                Column {
+                                    anchors.fill: parent
+                                    anchors.margins: 25
+                                    spacing: 15
+
+                                    // Booking header
+                                    Row {
+                                        width: parent.width
+                                        spacing: 20
+
+                                        Column {
+                                            spacing: 5
+                                            width: 200
+                                            Text {
+                                                text: "Booking ID"
+                                                color: "#7d8590"
+                                                font.pixelSize: 12
+                                            }
+                                            Text {
+                                                text: bookingData.bookingId
+                                                color: "#58a6ff"
+                                                font.pixelSize: 18
+                                                font.bold: true
+                                            }
+                                        }
+
+                                        Rectangle {
+                                            width: 1
+                                            height: 50
+                                            color: "#30363d"
+                                        }
+
+                                        Column {
+                                            spacing: 5
+                                            width: 150
+                                            Text {
+                                                text: "Flight"
+                                                color: "#7d8590"
+                                                font.pixelSize: 12
+                                            }
+                                            Text {
+                                                text: bookingData.flightNumber
+                                                color: "white"
+                                                font.pixelSize: 18
+                                                font.bold: true
+                                            }
+                                        }
+
+                                        Rectangle {
+                                            width: 1
+                                            height: 50
+                                            color: "#30363d"
+                                        }
+
+                                        Column {
+                                            spacing: 5
+                                            width: 100
+                                            Text {
+                                                text: "Seat"
+                                                color: "#7d8590"
+                                                font.pixelSize: 12
+                                            }
+                                            Text {
+                                                text: bookingData.seatId
+                                                color: "#3fb950"
+                                                font.pixelSize: 18
+                                                font.bold: true
+                                            }
+                                        }
+
+                                        Rectangle {
+                                            width: 1
+                                            height: 50
+                                            color: "#30363d"
+                                        }
+
+                                        Column {
+                                            spacing: 5
+                                            width: 250
+                                            Text {
+                                                text: "Passenger"
+                                                color: "#7d8590"
+                                                font.pixelSize: 12
+                                            }
+                                            Text {
+                                                text: bookingData.passengerName
+                                                color: "white"
+                                                font.pixelSize: 18
+                                            }
+                                        }
+
+                                        Item {
+                                            width: 50
+                                            height: 1
+                                        }
+
+                                        Button {
+                                            text: "Cancel Booking"
+                                            width: 150
+                                            height: 45
+                                            anchors.verticalCenter: parent.verticalCenter
+
+                                            background: Rectangle {
+                                                color: parent.hovered ? "#da3633" : "#0f1419"
+                                                radius: 6
+                                                border.color: "#f85149"
+                                                border.width: 1
+                                            }
+
+                                            contentItem: Text {
+                                                text: parent.text
+                                                color: "#f85149"
+                                                font.pixelSize: 14
+                                                font.bold: true
+                                                horizontalAlignment: Text.AlignHCenter
+                                                verticalAlignment: Text.AlignVCenter
+                                            }
+
+                                            onClicked: {
+                                                cancelDialog.bookingToCancel = bookingData
+                                                cancelDialog.visible = true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        // Empty state - shows when no bookings
+                        Rectangle {
+                            width: 400
+                            height: 300
+                            color: "transparent"
+                            visible: bookingsScrollView.myBookings.length === 0
+                            anchors.horizontalCenter: parent.horizontalCenter
+
+                            Column {
+                                anchors.centerIn: parent
+                                spacing: 20
+
+                                Text {
+                                    text: "📋"
+                                    color: "#30363d"
+                                    font.pixelSize: 80
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+
+                                Text {
+                                    text: "No bookings yet"
+                                    color: "#7d8590"
+                                    font.pixelSize: 24
+                                    font.bold: true
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+
+                                Text {
+                                    text: "Book a flight to see it here"
+                                    color: "#484f58"
+                                    font.pixelSize: 16
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+                            }
+                        }
+                    }
+
+                    // Cancel Confirmation Dialog
+                    Rectangle {
+                        id: cancelDialog
+                        anchors.fill: parent
+                        color: "#000000cc"
+                        visible: false
+                        z: 1000
+
+                        property var bookingToCancel: null
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: cancelDialog.visible = false
+                        }
+
+                        Rectangle {
+                            anchors.centerIn: parent
+                            width: 500
+                            height: 280
+                            color: "#161b22"
+                            radius: 12
+                            border.color: "#30363d"
+                            border.width: 1
+
+                            Column {
+                                anchors.centerIn: parent
+                                spacing: 25
+                                width: parent.width - 60
+
+                                Text {
+                                    text: "⚠ Cancel Booking"
+                                    color: "white"
+                                    font.pixelSize: 24
+                                    font.bold: true
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                }
+
+                                Text {
+                                    text: "Are you sure you want to cancel this booking?"
+                                    color: "#7d8590"
+                                    font.pixelSize: 16
+                                    width: parent.width
+                                    wrapMode: Text.WordWrap
+                                    horizontalAlignment: Text.AlignHCenter
+                                }
+
+                                Column {
+                                    spacing: 5
+                                    anchors.horizontalCenter: parent.horizontalCenter
+
+                                    Text {
+                                        text: cancelDialog.bookingToCancel ? "Booking ID: " + cancelDialog.bookingToCancel.bookingId : ""
+                                        color: "#58a6ff"
+                                        font.pixelSize: 14
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                    }
+                                    Text {
+                                        text: cancelDialog.bookingToCancel ? "Flight: " + cancelDialog.bookingToCancel.flightNumber + " | Seat: " + cancelDialog.bookingToCancel.seatId : ""
+                                        color: "white"
+                                        font.pixelSize: 14
+                                        anchors.horizontalCenter: parent.horizontalCenter
+                                    }
+                                }
+
+                                Row {
+                                    spacing: 15
+                                    anchors.horizontalCenter: parent.horizontalCenter
+
+                                    Button {
+                                        text: "No, Keep It"
+                                        width: 150
+                                        height: 45
+
+                                        background: Rectangle {
+                                            color: parent.hovered ? "#1c2128" : "transparent"
+                                            radius: 6
+                                            border.color: "#30363d"
+                                            border.width: 1
+                                        }
+
+                                        contentItem: Text {
+                                            text: parent.text
+                                            color: "white"
+                                            font.pixelSize: 14
+                                            horizontalAlignment: Text.AlignHCenter
+                                            verticalAlignment: Text.AlignVCenter
+                                        }
+
+                                        onClicked: {
+                                            cancelDialog.visible = false
+                                        }
+                                    }
+
+                                    Button {
+                                        text: "Yes, Cancel"
+                                        width: 150
+                                        height: 45
+
+                                        background: Rectangle {
+                                            color: parent.hovered ? "#da3633" : "#f85149"
+                                            radius: 6
+                                        }
+
+                                        contentItem: Text {
+                                            text: parent.text
+                                            color: "white"
+                                            font.pixelSize: 14
+                                            font.bold: true
+                                            horizontalAlignment: Text.AlignHCenter
+                                            verticalAlignment: Text.AlignVCenter
+                                        }
+
+                                        onClicked: {
+                                            var success = flightHandler.cancelBooking(cancelDialog.bookingToCancel.bookingId)
+
+                                            if (success) {
+                                                console.log("Booking cancelled successfully")
+                                                // Reload bookings
+                                                bookingsScrollView.myBookings = flightHandler.getMyBookings(currentUsername)  // USE ID
+                                                flightsList = flightHandler.getAllFlights()
+                                            } else {
+                                                console.log("Failed to cancel booking")
+                                            }
+
+                                            cancelDialog.visible = false
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -828,7 +1142,14 @@ Window {
                                 if (visible && selectedFlight) {
                                     bookedSeats = flightHandler.getBookedSeats(selectedFlight.flightNumber)
                                     selectedSeatId = ""
+                                    passengerNameInput.text = ""
+                                    bookingStatusText.visible = false
                                 }
+                            }
+
+                            // Reset status message when seat selection changes
+                            onSelectedSeatIdChanged: {
+                                bookingStatusText.visible = false
                             }
 
                             function isSeatBooked(seatId) {
@@ -838,12 +1159,16 @@ Window {
                             function handleSeatClick(seatId) {
                                 // Don't allow selecting booked seats
                                 if (isSeatBooked(seatId)) {
+                                    // Show feedback that seat is unavailable
+                                    console.log("Seat", seatId, "is already booked")
                                     return
                                 }
 
                                 // Toggle selection: if clicking the same seat, deselect it
                                 if (selectedSeatId === seatId) {
                                     selectedSeatId = ""
+                                    // Clear passenger name when deselecting
+                                    passengerNameInput.text = ""
                                 } else {
                                     selectedSeatId = seatId
                                 }
@@ -884,6 +1209,8 @@ Window {
                                                 onClicked: {
                                                     currentView = "flights"
                                                     seatSelectionView.selectedSeatId = ""
+                                                    passengerNameInput.text = ""
+                                                    bookingStatusText.visible = false
                                                 }
                                             }
 
@@ -979,10 +1306,12 @@ Window {
                                                 border.width: 1
                                                 clip: true
 
-                                                // Container for the scaled content
                                                 Item {
-                                                    anchors.fill: parent
-                                                    scale: 0.625  // Scale factor: 1200/1920 = 0.625
+                                                    width: 1920
+                                                    height: 1080
+                                                    x: -120
+                                                    y: -70
+                                                    scale: 0.75
                                                     transformOrigin: Item.TopLeft
 
                                                     Image {
@@ -2110,12 +2439,25 @@ Window {
                                             // Booking confirmation
                                             Rectangle {
                                                 width: 700
-                                                height: 180
+                                                height: 220
                                                 color: "#161b22"
                                                 radius: 12
                                                 border.color: "#30363d"
                                                 border.width: 1
                                                 visible: seatSelectionView.selectedSeatId !== ""
+                                                anchors.horizontalCenter: parent.horizontalCenter
+
+                                                Timer {
+                                                    id: returnTimer
+                                                    interval: 2000
+                                                    repeat: false
+                                                    onTriggered: {
+                                                        currentView = "flights"
+                                                        seatSelectionView.selectedSeatId = ""
+                                                        passengerNameInput.text = ""
+                                                        bookingStatusText.visible = false
+                                                    }
+                                                }
 
                                                 Column {
                                                     anchors.centerIn: parent
@@ -2175,7 +2517,11 @@ Window {
                                                                 currentUsername
                                                             )
 
-                                                            if (bookingId !== "") {
+                                                            if (bookingId === "ALREADY_BOOKED") {
+                                                                bookingStatusText.text = "✗ You already have a booking on this flight!"
+                                                                bookingStatusText.color = "#f85149"
+                                                                bookingStatusText.visible = true
+                                                            } else if (bookingId !== "") {
                                                                 console.log("Booking confirmed! ID:", bookingId)
                                                                 console.log("Flight:", selectedFlight.flightNumber)
                                                                 console.log("Seat:", seatSelectionView.selectedSeatId)
@@ -2183,20 +2529,39 @@ Window {
 
                                                                 // Refresh booked seats to include the newly booked seat
                                                                 seatSelectionView.bookedSeats = flightHandler.getBookedSeats(selectedFlight.flightNumber)
+                                                                flightsList = flightHandler.getAllFlights()
 
-                                                                currentView = "flights"
-                                                                seatSelectionView.selectedSeatId = ""
-                                                                passengerNameInput.text = ""
+                                                                bookingStatusText.text = "✓ Booking confirmed! ID: " + bookingId
+                                                                bookingStatusText.color = "#3fb950"
+                                                                bookingStatusText.visible = true
+
+                                                                // Return to flights after a short delay
+                                                                returnTimer.start()
                                                             } else {
-                                                                console.log("Booking failed - seat may already be booked")
+                                                                bookingStatusText.text = "✗ Booking failed - seat may already be booked"
+                                                                bookingStatusText.color = "#f85149"
+                                                                bookingStatusText.visible = true
                                                             }
                                                         }
+                                                    }
+
+                                                    Text {
+                                                        id: bookingStatusText
+                                                        text: ""
+                                                        color: "#3fb950"
+                                                        font.pixelSize: 14
+                                                        font.bold: true
+                                                        width: 400
+                                                        wrapMode: Text.WordWrap
+                                                        horizontalAlignment: Text.AlignHCenter
+                                                        anchors.horizontalCenter: parent.horizontalCenter
+                                                        visible: false
                                                     }
                                                 }
                                             }
                                         }
                                     }
-                                }
+                }
             }
         }
     }

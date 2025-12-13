@@ -39,49 +39,60 @@ QVariantList FlightHandler::getAllFlights()
 {
     QVariantList flightList;
 
+    // Flight F101
     QVariantMap f1;
     f1["flightNumber"] = "F101";
     f1["origin"] = "New York";
     f1["destination"] = "London";
     f1["time"] = "08:00";
-    f1["availableSeats"] = 106;
     f1["totalSeats"] = 106;
+    // Calculate available seats
+    int bookedF101 = bookedSeatsMap.contains("F101") ? bookedSeatsMap["F101"].length() : 0;
+    f1["availableSeats"] = 106 - bookedF101;
     flightList.append(f1);
 
+    // Flight F102
     QVariantMap f2;
     f2["flightNumber"] = "F102";
     f2["origin"] = "London";
     f2["destination"] = "Paris";
     f2["time"] = "10:30";
-    f2["availableSeats"] = 106;
     f2["totalSeats"] = 106;
+    int bookedF102 = bookedSeatsMap.contains("F102") ? bookedSeatsMap["F102"].length() : 0;
+    f2["availableSeats"] = 106 - bookedF102;
     flightList.append(f2);
 
+    // Flight F201
     QVariantMap f3;
     f3["flightNumber"] = "F201";
     f3["origin"] = "Tokyo";
     f3["destination"] = "Seoul";
     f3["time"] = "12:15";
-    f3["availableSeats"] = 106;
     f3["totalSeats"] = 106;
+    int bookedF201 = bookedSeatsMap.contains("F201") ? bookedSeatsMap["F201"].length() : 0;
+    f3["availableSeats"] = 106 - bookedF201;
     flightList.append(f3);
 
+    // Flight F202
     QVariantMap f4;
     f4["flightNumber"] = "F202";
     f4["origin"] = "Delhi";
     f4["destination"] = "Mumbai";
     f4["time"] = "14:45";
-    f4["availableSeats"] = 106;
     f4["totalSeats"] = 106;
+    int bookedF202 = bookedSeatsMap.contains("F202") ? bookedSeatsMap["F202"].length() : 0;
+    f4["availableSeats"] = 106 - bookedF202;
     flightList.append(f4);
 
+    // Flight F301
     QVariantMap f5;
     f5["flightNumber"] = "F301";
     f5["origin"] = "Dubai";
     f5["destination"] = "Singapore";
     f5["time"] = "16:20";
-    f5["availableSeats"] = 106;
     f5["totalSeats"] = 106;
+    int bookedF301 = bookedSeatsMap.contains("F301") ? bookedSeatsMap["F301"].length() : 0;
+    f5["availableSeats"] = 106 - bookedF301;
     flightList.append(f5);
 
     return flightList;
@@ -187,7 +198,24 @@ QString FlightHandler::bookFlight(const QString &flightNumber, const QString &pa
 
 bool FlightHandler::cancelBooking(const QString &bookingId)
 {
-    return airlineSystem->cancelTicket(bookingId.toStdString());
+    if (!userBookingsMap.contains(bookingId)) {
+        return false;
+    }
+
+    // Get booking details
+    QVariantMap booking = userBookingsMap[bookingId];
+    QString flightNumber = booking["flightNumber"].toString();
+    QString seatId = booking["seatId"].toString();
+
+    // Remove seat from booked seats
+    if (bookedSeatsMap.contains(flightNumber)) {
+        bookedSeatsMap[flightNumber].removeAll(seatId);
+    }
+
+    // Remove booking
+    userBookingsMap.remove(bookingId);
+
+    return true;
 }
 
 QVariantList FlightHandler::getMyBookings(const QString &username)
