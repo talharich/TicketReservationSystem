@@ -5,6 +5,8 @@
 #include <QString>
 #include <QVariantList>
 #include <QVariantMap>
+#include <QMap>
+#include <QStringList>
 #include "SimpleAirline.h"
 
 class FlightHandler : public QObject
@@ -17,15 +19,21 @@ public:
     Q_INVOKABLE QVariantList searchFlights(const QString &from, const QString &to);
     Q_INVOKABLE QVariantMap getFlightDetails(const QString &flightNumber);
     Q_INVOKABLE QVariantList getFlightSeats(const QString &flightNumber);
-    Q_INVOKABLE QVariantList getBookedSeats(const QString &flightNumber); // NEW
-    Q_INVOKABLE QString bookFlight(const QString &flightNumber, const QString &passengerName, const QString &seatId); // Changed seatNumber to seatId
+    Q_INVOKABLE QVariantList getBookedSeats(const QString &flightNumber);
+    Q_INVOKABLE QString bookFlight(const QString &flightNumber, const QString &passengerName, const QString &seatId, const QString &username);
     Q_INVOKABLE bool cancelBooking(const QString &bookingId);
-    Q_INVOKABLE QVariantList getMyBookings();
+    Q_INVOKABLE QVariantList getMyBookings(const QString &username);
 
 private:
     AirlineSystem* airlineSystem;
     QVariantMap flightToVariantMap(const Flight* flight);
-    QString seatIdToNumber(const QString &seatId); // Helper to convert "1A" to seat number
+    QString seatIdToNumber(const QString &seatId);
+
+    // Store booked seats: flightNumber -> list of seatIds
+    QMap<QString, QStringList> bookedSeatsMap;
+
+    // Store user bookings: bookingId -> {username, flightNumber, seatId, passengerName}
+    QMap<QString, QVariantMap> userBookingsMap;
 };
 
 #endif // FLIGHTHANDLER_H

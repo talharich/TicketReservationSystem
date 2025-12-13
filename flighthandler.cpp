@@ -4,6 +4,8 @@
 FlightHandler::FlightHandler(AirlineSystem* system, QObject *parent)
     : QObject(parent), airlineSystem(system)
 {
+    // Initialize with some pre-booked seats for demo
+    bookedSeatsMap["F102"] = QStringList() << "1A" << "1B" << "2C" << "3D";
 }
 
 QVariantMap FlightHandler::flightToVariantMap(const Flight* flight)
@@ -16,7 +18,7 @@ QVariantMap FlightHandler::flightToVariantMap(const Flight* flight)
         map["time"] = QString::fromStdString(flight->getTime());
 
         int available = 0;
-        int total = 106; // Updated to match our new seat count
+        int total = 106;
         for (int i = 1; i <= total; i++) {
             if (flight->isSeatAvailable(i)) {
                 available++;
@@ -30,8 +32,6 @@ QVariantMap FlightHandler::flightToVariantMap(const Flight* flight)
 
 QString FlightHandler::seatIdToNumber(const QString &seatId)
 {
-    // Convert seat IDs like "1A", "2B" to seat numbers
-    // This is a helper function for the booking system
     return seatId;
 }
 
@@ -138,23 +138,50 @@ QVariantList FlightHandler::getBookedSeats(const QString &flightNumber)
 {
     QVariantList bookedSeats;
 
-    // For demo purposes, return some pre-booked seats
-    // In real implementation, this would query from your backend
-    if (flightNumber == "F102") {
-        bookedSeats.append("1A");
-        bookedSeats.append("1B");
-        bookedSeats.append("2C");
-        bookedSeats.append("3D");
+    if (bookedSeatsMap.contains(flightNumber)) {
+        QStringList seats = bookedSeatsMap[flightNumber];
+        for (const QString &seatId : seats) {
+            bookedSeats.append(seatId);
+        }
     }
 
     return bookedSeats;
 }
 
-QString FlightHandler::bookFlight(const QString &flightNumber, const QString &passengerName, const QString &seatId)
+QString FlightHandler::bookFlight(const QString &flightNumber, const QString &passengerName, const QString &seatId, const QString &username)
 {
-    // For now, we'll just return a booking ID
-    // In real implementation, convert seatId to seat number and use airlineSystem
+    // Check if user already has a booking on this flight
+    for (auto it = userBookingsMap.begin(); it != userBookingsMap.end(); ++it) {
+        QVariantMap booking = it.value();
+        if (booking["username"].toString() == username &&
+            booking["flightNumber"].toString() == flightNumber) {
+            qDebug() << "User already has a booking on this flight";
+            return "ALREADY_BOOKED"; // Special return value
+        }
+    }
+
+    // Check if seat is already booked
+    if (bookedSeatsMap.contains(flightNumber)) {
+        if (bookedSeatsMap[flightNumber].contains(seatId)) {
+            return ""; // Seat already booked
+        }
+    }
+
+    // Add the seat to the booked seats map
+    bookedSeatsMap[flightNumber].append(seatId);
+
+    // Generate booking ID
     QString bookingId = "BK" + QString::number(QDateTime::currentMSecsSinceEpoch());
+
+    // Store booking details
+    QVariantMap bookingDetails;
+    bookingDetails["bookingId"] = bookingId;
+    bookingDetails["username"] = username;
+    bookingDetails["flightNumber"] = flightNumber;
+    bookingDetails["seatId"] = seatId;
+    bookingDetails["passengerName"] = passengerName;
+    userBookingsMap[bookingId] = bookingDetails;
+
     return bookingId;
 }
 
@@ -163,8 +190,16 @@ bool FlightHandler::cancelBooking(const QString &bookingId)
     return airlineSystem->cancelTicket(bookingId.toStdString());
 }
 
-QVariantList FlightHandler::getMyBookings()
+QVariantList FlightHandler::getMyBookings(const QString &username)
 {
     QVariantList bookings;
+
+    for (auto it = userBookingsMap.begin(); it != userBookingsMap.end(); ++it) {
+        QVariantMap booking = it.value();
+        if (booking["username"].toString() == username) {
+            bookings.append(booking);
+        }
+    }
+
     return bookings;
 }

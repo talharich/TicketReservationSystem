@@ -10,6 +10,7 @@ Window {
     title: "Airline Reservation System"
 
     property bool isLoggedIn: false
+    property string currentUsername: ""  // ADD THIS LINE
     property string currentView: "flights" // flights, bookings, search, seatSelection
     property var flightsList: []
     property var searchResults: []
@@ -97,6 +98,7 @@ Window {
                             if (result.indexOf("✓") !== -1) {
                                 statusText.color = "#3fb950"
                                 isLoggedIn = true
+                                currentUsername = usernameField.text  // ADD THIS LINE
                                 flightsList = flightHandler.getAllFlights()
                             } else {
                                 statusText.color = "#f85149"
@@ -292,6 +294,8 @@ Window {
 
                         onClicked: {
                             isLoggedIn = false
+                            currentUsername = ""
+                            currentView = "flights"
                             usernameField.text = ""
                             passwordField.text = ""
                             statusText.text = ""
@@ -809,27 +813,41 @@ Window {
                 }
 
                 // Seat Selection View
-                                Rectangle {
-                                    id: seatSelectionView
-                                    anchors.fill: parent
-                                    anchors.margins: 30
-                                    visible: currentView === "seatSelection"
-                                    color: "transparent"
+                Rectangle {
+                            id: seatSelectionView
+                            anchors.fill: parent
+                            anchors.margins: 30
+                            visible: currentView === "seatSelection"
+                            color: "transparent"
 
-                                    property var bookedSeats: []
-                                    property string selectedSeatId: ""
+                            property var bookedSeats: []
+                            property string selectedSeatId: ""
 
-                                    // Load booked seats when view becomes visible
-                                    onVisibleChanged: {
-                                        if (visible && selectedFlight) {
-                                            bookedSeats = flightHandler.getBookedSeats(selectedFlight.flightNumber)
-                                            selectedSeatId = ""
-                                        }
-                                    }
+                            // Load booked seats when view becomes visible
+                            onVisibleChanged: {
+                                if (visible && selectedFlight) {
+                                    bookedSeats = flightHandler.getBookedSeats(selectedFlight.flightNumber)
+                                    selectedSeatId = ""
+                                }
+                            }
 
-                                    function isSeatBooked(seatId) {
-                                        return bookedSeats.indexOf(seatId) !== -1
-                                    }
+                            function isSeatBooked(seatId) {
+                                return bookedSeats.indexOf(seatId) !== -1
+                            }
+
+                            function handleSeatClick(seatId) {
+                                // Don't allow selecting booked seats
+                                if (isSeatBooked(seatId)) {
+                                    return
+                                }
+
+                                // Toggle selection: if clicking the same seat, deselect it
+                                if (selectedSeatId === seatId) {
+                                    selectedSeatId = ""
+                                } else {
+                                    selectedSeatId = seatId
+                                }
+                            }
 
                                     ScrollView {
                                         anchors.fill: parent
@@ -2153,16 +2171,25 @@ Window {
                                                             var bookingId = flightHandler.bookFlight(
                                                                 selectedFlight.flightNumber,
                                                                 passengerNameInput.text,
-                                                                seatSelectionView.selectedSeatId
+                                                                seatSelectionView.selectedSeatId,
+                                                                currentUsername
                                                             )
-                                                            console.log("Booking confirmed! ID:", bookingId)
-                                                            console.log("Flight:", selectedFlight.flightNumber)
-                                                            console.log("Seat:", seatSelectionView.selectedSeatId)
-                                                            console.log("Passenger:", passengerNameInput.text)
 
-                                                            currentView = "flights"
-                                                            seatSelectionView.selectedSeatId = ""
-                                                            passengerNameInput.text = ""
+                                                            if (bookingId !== "") {
+                                                                console.log("Booking confirmed! ID:", bookingId)
+                                                                console.log("Flight:", selectedFlight.flightNumber)
+                                                                console.log("Seat:", seatSelectionView.selectedSeatId)
+                                                                console.log("Passenger:", passengerNameInput.text)
+
+                                                                // Refresh booked seats to include the newly booked seat
+                                                                seatSelectionView.bookedSeats = flightHandler.getBookedSeats(selectedFlight.flightNumber)
+
+                                                                currentView = "flights"
+                                                                seatSelectionView.selectedSeatId = ""
+                                                                passengerNameInput.text = ""
+                                                            } else {
+                                                                console.log("Booking failed - seat may already be booked")
+                                                            }
                                                         }
                                                     }
                                                 }
