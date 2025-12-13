@@ -6,7 +6,7 @@ Window {
     width: 1920
     height: 1080
     visible: true
-    visibility: window.Maximized
+    visibility: Window.Maximized
     title: "Airline Reservation System"
 
     property bool isLoggedIn: false
@@ -978,794 +978,998 @@ Window {
 
                                                         // Right section - Column 1 (A seats)
                                                         SeatButton {
-                                                            id: seat1A
                                                             x: 1081
                                                             y: 327
                                                             seatNumber: "1A"
+                                                            isBooked: seatSelectionView.isSeatBooked("1A")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1A"
+                                                            onClicked: seatSelectionView.handleSeatClick("1A")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2A
                                                             x: 1081
                                                             y: 366
                                                             seatNumber: "2A"
+                                                            isBooked: seatSelectionView.isSeatBooked("2A")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2A"
+                                                            onClicked: seatSelectionView.handleSeatClick("2A")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat3A
                                                             x: 1081
                                                             y: 404
                                                             seatNumber: "3A"
+                                                            isBooked: seatSelectionView.isSeatBooked("3A")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3A"
+                                                            onClicked: seatSelectionView.handleSeatClick("3A")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat4A
                                                             x: 1081
                                                             y: 477
                                                             seatNumber: "4A"
+                                                            isBooked: seatSelectionView.isSeatBooked("4A")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4A"
+                                                            onClicked: seatSelectionView.handleSeatClick("4A")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat5A
                                                             x: 1081
                                                             y: 516
                                                             seatNumber: "5A"
+                                                            isBooked: seatSelectionView.isSeatBooked("5A")
+                                                            isSelected: seatSelectionView.selectedSeatId === "5A"
+                                                            onClicked: seatSelectionView.handleSeatClick("5A")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat6A
                                                             x: 1081
                                                             y: 554
                                                             seatNumber: "6A"
+                                                            isBooked: seatSelectionView.isSeatBooked("6A")
+                                                            isSelected: seatSelectionView.selectedSeatId === "6A"
+                                                            onClicked: seatSelectionView.handleSeatClick("6A")
                                                         }
 
                                                         // Right section - Column 2 (B seats)
                                                         SeatButton {
-                                                            id: seat1B
                                                             x: 1042
                                                             y: 327
                                                             seatNumber: "1B"
+                                                            isBooked: seatSelectionView.isSeatBooked("1B")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1B"
+                                                            onClicked: seatSelectionView.handleSeatClick("1B")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2B
                                                             x: 1042
                                                             y: 366
                                                             seatNumber: "2B"
+                                                            isBooked: seatSelectionView.isSeatBooked("2B")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2B"
+                                                            onClicked: seatSelectionView.handleSeatClick("2B")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat3B
                                                             x: 1042
                                                             y: 404
                                                             seatNumber: "3B"
+                                                            isBooked: seatSelectionView.isSeatBooked("3B")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3B"
+                                                            onClicked: seatSelectionView.handleSeatClick("3B")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat4B
                                                             x: 1042
                                                             y: 477
                                                             seatNumber: "4B"
+                                                            isBooked: seatSelectionView.isSeatBooked("4B")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4B"
+                                                            onClicked: seatSelectionView.handleSeatClick("4B")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat5B
                                                             x: 1042
                                                             y: 516
                                                             seatNumber: "5B"
+                                                            isBooked: seatSelectionView.isSeatBooked("5B")
+                                                            isSelected: seatSelectionView.selectedSeatId === "5B"
+                                                            onClicked: seatSelectionView.handleSeatClick("5B")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat6B
                                                             x: 1042
                                                             y: 554
                                                             seatNumber: "6B"
+                                                            isBooked: seatSelectionView.isSeatBooked("6B")
+                                                            isSelected: seatSelectionView.selectedSeatId === "6B"
+                                                            onClicked: seatSelectionView.handleSeatClick("6B")
                                                         }
 
                                                         // Right section - Column 3 (C seats)
                                                         SeatButton {
-                                                            id: seat1C
                                                             x: 1003
                                                             y: 327
                                                             seatNumber: "1C"
+                                                            isBooked: seatSelectionView.isSeatBooked("1C")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1C"
+                                                            onClicked: seatSelectionView.handleSeatClick("1C")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2C
                                                             x: 1003
                                                             y: 366
                                                             seatNumber: "2C"
+                                                            isBooked: seatSelectionView.isSeatBooked("2C")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2C"
+                                                            onClicked: seatSelectionView.handleSeatClick("2C")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat3C
                                                             x: 1003
                                                             y: 404
                                                             seatNumber: "3C"
+                                                            isBooked: seatSelectionView.isSeatBooked("3C")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3C"
+                                                            onClicked: seatSelectionView.handleSeatClick("3C")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat4C
                                                             x: 1003
                                                             y: 477
                                                             seatNumber: "4C"
+                                                            isBooked: seatSelectionView.isSeatBooked("4C")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4C"
+                                                            onClicked: seatSelectionView.handleSeatClick("4C")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat5C
                                                             x: 1003
                                                             y: 516
                                                             seatNumber: "5C"
+                                                            isBooked: seatSelectionView.isSeatBooked("5C")
+                                                            isSelected: seatSelectionView.selectedSeatId === "5C"
+                                                            onClicked: seatSelectionView.handleSeatClick("5C")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat6C
                                                             x: 1003
                                                             y: 554
                                                             seatNumber: "6C"
+                                                            isBooked: seatSelectionView.isSeatBooked("6C")
+                                                            isSelected: seatSelectionView.selectedSeatId === "6C"
+                                                            onClicked: seatSelectionView.handleSeatClick("6C")
                                                         }
 
                                                         // Right-middle section - Column 1 (D seats)
                                                         SeatButton {
-                                                            id: seat1D
                                                             x: 967
                                                             y: 327
                                                             seatNumber: "1D"
+                                                            isBooked: seatSelectionView.isSeatBooked("1D")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1D"
+                                                            onClicked: seatSelectionView.handleSeatClick("1D")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2D
                                                             x: 967
                                                             y: 366
                                                             seatNumber: "2D"
+                                                            isBooked: seatSelectionView.isSeatBooked("2D")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2D"
+                                                            onClicked: seatSelectionView.handleSeatClick("2D")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat3D
                                                             x: 967
                                                             y: 404
                                                             seatNumber: "3D"
+                                                            isBooked: seatSelectionView.isSeatBooked("3D")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3D"
+                                                            onClicked: seatSelectionView.handleSeatClick("3D")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat4D
                                                             x: 967
                                                             y: 477
                                                             seatNumber: "4D"
+                                                            isBooked: seatSelectionView.isSeatBooked("4D")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4D"
+                                                            onClicked: seatSelectionView.handleSeatClick("4D")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat5D
                                                             x: 967
                                                             y: 516
                                                             seatNumber: "5D"
+                                                            isBooked: seatSelectionView.isSeatBooked("5D")
+                                                            isSelected: seatSelectionView.selectedSeatId === "5D"
+                                                            onClicked: seatSelectionView.handleSeatClick("5D")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat6D
                                                             x: 967
                                                             y: 554
                                                             seatNumber: "6D"
+                                                            isBooked: seatSelectionView.isSeatBooked("6D")
+                                                            isSelected: seatSelectionView.selectedSeatId === "6D"
+                                                            onClicked: seatSelectionView.handleSeatClick("6D")
                                                         }
 
                                                         // Right-middle section - Column 2 (E seats)
                                                         SeatButton {
-                                                            id: seat1E
                                                             x: 928
                                                             y: 327
                                                             seatNumber: "1E"
+                                                            isBooked: seatSelectionView.isSeatBooked("1E")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1E"
+                                                            onClicked: seatSelectionView.handleSeatClick("1E")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2E
                                                             x: 928
                                                             y: 366
                                                             seatNumber: "2E"
+                                                            isBooked: seatSelectionView.isSeatBooked("2E")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2E"
+                                                            onClicked: seatSelectionView.handleSeatClick("2E")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat3E
                                                             x: 928
                                                             y: 404
                                                             seatNumber: "3E"
+                                                            isBooked: seatSelectionView.isSeatBooked("3E")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3E"
+                                                            onClicked: seatSelectionView.handleSeatClick("3E")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat4E
                                                             x: 928
                                                             y: 477
                                                             seatNumber: "4E"
+                                                            isBooked: seatSelectionView.isSeatBooked("4E")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4E"
+                                                            onClicked: seatSelectionView.handleSeatClick("4E")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat5E
                                                             x: 928
                                                             y: 516
                                                             seatNumber: "5E"
+                                                            isBooked: seatSelectionView.isSeatBooked("5E")
+                                                            isSelected: seatSelectionView.selectedSeatId === "5E"
+                                                            onClicked: seatSelectionView.handleSeatClick("5E")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat6E
                                                             x: 928
                                                             y: 554
                                                             seatNumber: "6E"
+                                                            isBooked: seatSelectionView.isSeatBooked("6E")
+                                                            isSelected: seatSelectionView.selectedSeatId === "6E"
+                                                            onClicked: seatSelectionView.handleSeatClick("6E")
                                                         }
 
                                                         // Right-middle section - Column 3 (F seats)
                                                         SeatButton {
-                                                            id: seat1F
                                                             x: 889
                                                             y: 327
                                                             seatNumber: "1F"
+                                                            isBooked: seatSelectionView.isSeatBooked("1F")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1F"
+                                                            onClicked: seatSelectionView.handleSeatClick("1F")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2F
                                                             x: 889
                                                             y: 366
                                                             seatNumber: "2F"
+                                                            isBooked: seatSelectionView.isSeatBooked("2F")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2F"
+                                                            onClicked: seatSelectionView.handleSeatClick("2F")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat3F
                                                             x: 889
                                                             y: 404
                                                             seatNumber: "3F"
+                                                            isBooked: seatSelectionView.isSeatBooked("3F")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3F"
+                                                            onClicked: seatSelectionView.handleSeatClick("3F")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat4F
                                                             x: 889
                                                             y: 477
                                                             seatNumber: "4F"
+                                                            isBooked: seatSelectionView.isSeatBooked("4F")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4F"
+                                                            onClicked: seatSelectionView.handleSeatClick("4F")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat5F
                                                             x: 889
                                                             y: 516
                                                             seatNumber: "5F"
+                                                            isBooked: seatSelectionView.isSeatBooked("5F")
+                                                            isSelected: seatSelectionView.selectedSeatId === "5F"
+                                                            onClicked: seatSelectionView.handleSeatClick("5F")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat6F
                                                             x: 889
                                                             y: 554
                                                             seatNumber: "6F"
+                                                            isBooked: seatSelectionView.isSeatBooked("6F")
+                                                            isSelected: seatSelectionView.selectedSeatId === "6F"
+                                                            onClicked: seatSelectionView.handleSeatClick("6F")
                                                         }
 
                                                         // Center-right section - Column 1 (G seats)
                                                         SeatButton {
-                                                            id: seat1G
                                                             x: 851
                                                             y: 327
                                                             seatNumber: "1G"
+                                                            isBooked: seatSelectionView.isSeatBooked("1G")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1G"
+                                                            onClicked: seatSelectionView.handleSeatClick("1G")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2G
                                                             x: 851
                                                             y: 366
                                                             seatNumber: "2G"
+                                                            isBooked: seatSelectionView.isSeatBooked("2G")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2G"
+                                                            onClicked: seatSelectionView.handleSeatClick("2G")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat3G
                                                             x: 851
                                                             y: 404
                                                             seatNumber: "3G"
+                                                            isBooked: seatSelectionView.isSeatBooked("3G")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3G"
+                                                            onClicked: seatSelectionView.handleSeatClick("3G")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat4G
                                                             x: 851
                                                             y: 477
                                                             seatNumber: "4G"
+                                                            isBooked: seatSelectionView.isSeatBooked("4G")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4G"
+                                                            onClicked: seatSelectionView.handleSeatClick("4G")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat5G
                                                             x: 851
                                                             y: 516
                                                             seatNumber: "5G"
+                                                            isBooked: seatSelectionView.isSeatBooked("5G")
+                                                            isSelected: seatSelectionView.selectedSeatId === "5G"
+                                                            onClicked: seatSelectionView.handleSeatClick("5G")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat6G
                                                             x: 851
                                                             y: 554
                                                             seatNumber: "6G"
+                                                            isBooked: seatSelectionView.isSeatBooked("6G")
+                                                            isSelected: seatSelectionView.selectedSeatId === "6G"
+                                                            onClicked: seatSelectionView.handleSeatClick("6G")
                                                         }
 
                                                         // Center-right section - Column 2 (H seats)
                                                         SeatButton {
-                                                            id: seat1H
                                                             x: 812
                                                             y: 327
                                                             seatNumber: "1H"
+                                                            isBooked: seatSelectionView.isSeatBooked("1H")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1H"
+                                                            onClicked: seatSelectionView.handleSeatClick("1H")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2H
                                                             x: 812
                                                             y: 366
                                                             seatNumber: "2H"
+                                                            isBooked: seatSelectionView.isSeatBooked("2H")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2H"
+                                                            onClicked: seatSelectionView.handleSeatClick("2H")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat3H
                                                             x: 812
                                                             y: 404
                                                             seatNumber: "3H"
+                                                            isBooked: seatSelectionView.isSeatBooked("3H")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3H"
+                                                            onClicked: seatSelectionView.handleSeatClick("3H")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat4H
                                                             x: 812
                                                             y: 477
                                                             seatNumber: "4H"
+                                                            isBooked: seatSelectionView.isSeatBooked("4H")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4H"
+                                                            onClicked: seatSelectionView.handleSeatClick("4H")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat5H
                                                             x: 812
                                                             y: 516
                                                             seatNumber: "5H"
+                                                            isBooked: seatSelectionView.isSeatBooked("5H")
+                                                            isSelected: seatSelectionView.selectedSeatId === "5H"
+                                                            onClicked: seatSelectionView.handleSeatClick("5H")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat6H
                                                             x: 812
                                                             y: 554
                                                             seatNumber: "6H"
+                                                            isBooked: seatSelectionView.isSeatBooked("6H")
+                                                            isSelected: seatSelectionView.selectedSeatId === "6H"
+                                                            onClicked: seatSelectionView.handleSeatClick("6H")
                                                         }
 
                                                         // Center-right section - Column 3 (I seats)
                                                         SeatButton {
-                                                            id: seat1I
                                                             x: 773
                                                             y: 327
                                                             seatNumber: "1I"
+                                                            isBooked: seatSelectionView.isSeatBooked("1I")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1I"
+                                                            onClicked: seatSelectionView.handleSeatClick("1I")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2I
                                                             x: 773
                                                             y: 366
                                                             seatNumber: "2I"
+                                                            isBooked: seatSelectionView.isSeatBooked("2I")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2I"
+                                                            onClicked: seatSelectionView.handleSeatClick("2I")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat3I
                                                             x: 773
                                                             y: 404
                                                             seatNumber: "3I"
+                                                            isBooked: seatSelectionView.isSeatBooked("3I")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3I"
+                                                            onClicked: seatSelectionView.handleSeatClick("3I")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat4I
                                                             x: 773
                                                             y: 477
                                                             seatNumber: "4I"
+                                                            isBooked: seatSelectionView.isSeatBooked("4I")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4I"
+                                                            onClicked: seatSelectionView.handleSeatClick("4I")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat5I
                                                             x: 773
                                                             y: 516
                                                             seatNumber: "5I"
+                                                            isBooked: seatSelectionView.isSeatBooked("5I")
+                                                            isSelected: seatSelectionView.selectedSeatId === "5I"
+                                                            onClicked: seatSelectionView.handleSeatClick("5I")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat6I
                                                             x: 773
                                                             y: 554
                                                             seatNumber: "6I"
+                                                            isBooked: seatSelectionView.isSeatBooked("6I")
+                                                            isSelected: seatSelectionView.selectedSeatId === "6I"
+                                                            onClicked: seatSelectionView.handleSeatClick("6I")
                                                         }
 
                                                         // Center-left section - Column 1 (J seats)
                                                         SeatButton {
-                                                            id: seat1J
                                                             x: 737
                                                             y: 327
                                                             seatNumber: "1J"
+                                                            isBooked: seatSelectionView.isSeatBooked("1J")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1J"
+                                                            onClicked: seatSelectionView.handleSeatClick("1J")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2J
                                                             x: 737
                                                             y: 366
                                                             seatNumber: "2J"
+                                                            isBooked: seatSelectionView.isSeatBooked("2J")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2J"
+                                                            onClicked: seatSelectionView.handleSeatClick("2J")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat3J
                                                             x: 737
                                                             y: 404
                                                             seatNumber: "3J"
+                                                            isBooked: seatSelectionView.isSeatBooked("3J")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3J"
+                                                            onClicked: seatSelectionView.handleSeatClick("3J")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat4J
                                                             x: 737
                                                             y: 477
                                                             seatNumber: "4J"
+                                                            isBooked: seatSelectionView.isSeatBooked("4J")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4J"
+                                                            onClicked: seatSelectionView.handleSeatClick("4J")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat5J
                                                             x: 737
                                                             y: 516
                                                             seatNumber: "5J"
+                                                            isBooked: seatSelectionView.isSeatBooked("5J")
+                                                            isSelected: seatSelectionView.selectedSeatId === "5J"
+                                                            onClicked: seatSelectionView.handleSeatClick("5J")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat6J
                                                             x: 737
                                                             y: 554
                                                             seatNumber: "6J"
+                                                            isBooked: seatSelectionView.isSeatBooked("6J")
+                                                            isSelected: seatSelectionView.selectedSeatId === "6J"
+                                                            onClicked: seatSelectionView.handleSeatClick("6J")
                                                         }
 
                                                         // Center-left section - Column 2 (K seats)
                                                         SeatButton {
-                                                            id: seat1K
                                                             x: 698
                                                             y: 327
                                                             seatNumber: "1K"
+                                                            isBooked: seatSelectionView.isSeatBooked("1K")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1K"
+                                                            onClicked: seatSelectionView.handleSeatClick("1K")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2K
                                                             x: 698
                                                             y: 366
                                                             seatNumber: "2K"
+                                                            isBooked: seatSelectionView.isSeatBooked("2K")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2K"
+                                                            onClicked: seatSelectionView.handleSeatClick("2K")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat3K
                                                             x: 698
                                                             y: 404
                                                             seatNumber: "3K"
+                                                            isBooked: seatSelectionView.isSeatBooked("3K")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3K"
+                                                            onClicked: seatSelectionView.handleSeatClick("3K")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat4K
                                                             x: 698
                                                             y: 477
                                                             seatNumber: "4K"
+                                                            isBooked: seatSelectionView.isSeatBooked("4K")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4K"
+                                                            onClicked: seatSelectionView.handleSeatClick("4K")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat5K
                                                             x: 698
                                                             y: 516
                                                             seatNumber: "5K"
+                                                            isBooked: seatSelectionView.isSeatBooked("5K")
+                                                            isSelected: seatSelectionView.selectedSeatId === "5K"
+                                                            onClicked: seatSelectionView.handleSeatClick("5K")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat6K
                                                             x: 698
                                                             y: 554
                                                             seatNumber: "6K"
+                                                            isBooked: seatSelectionView.isSeatBooked("6K")
+                                                            isSelected: seatSelectionView.selectedSeatId === "6K"
+                                                            onClicked: seatSelectionView.handleSeatClick("6K")
                                                         }
 
                                                         // Center-left section - Column 3 (L seats)
                                                         SeatButton {
-                                                            id: seat1L
                                                             x: 659
                                                             y: 327
                                                             seatNumber: "1L"
+                                                            isBooked: seatSelectionView.isSeatBooked("1L")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1L"
+                                                            onClicked: seatSelectionView.handleSeatClick("1L")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2L
                                                             x: 659
                                                             y: 366
                                                             seatNumber: "2L"
+                                                            isBooked: seatSelectionView.isSeatBooked("2L")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2L"
+                                                            onClicked: seatSelectionView.handleSeatClick("2L")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat3L
                                                             x: 659
                                                             y: 404
                                                             seatNumber: "3L"
+                                                            isBooked: seatSelectionView.isSeatBooked("3L")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3L"
+                                                            onClicked: seatSelectionView.handleSeatClick("3L")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat4L
                                                             x: 659
                                                             y: 477
                                                             seatNumber: "4L"
+                                                            isBooked: seatSelectionView.isSeatBooked("4L")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4L"
+                                                            onClicked: seatSelectionView.handleSeatClick("4L")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat5L
                                                             x: 659
                                                             y: 516
                                                             seatNumber: "5L"
+                                                            isBooked: seatSelectionView.isSeatBooked("5L")
+                                                            isSelected: seatSelectionView.selectedSeatId === "5L"
+                                                            onClicked: seatSelectionView.handleSeatClick("5L")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat6L
                                                             x: 659
                                                             y: 554
                                                             seatNumber: "6L"
+                                                            isBooked: seatSelectionView.isSeatBooked("6L")
+                                                            isSelected: seatSelectionView.selectedSeatId === "6L"
+                                                            onClicked: seatSelectionView.handleSeatClick("6L")
                                                         }
 
                                                         // Left section (larger seats) - Column 1 (M seats)
                                                         SeatButton {
-                                                            id: seat1M
                                                             x: 580
                                                             y: 327
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "1M"
+                                                            isBooked: seatSelectionView.isSeatBooked("1M")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1M"
+                                                            onClicked: seatSelectionView.handleSeatClick("1M")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2M
                                                             x: 580
                                                             y: 365
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "2M"
+                                                            isBooked: seatSelectionView.isSeatBooked("2M")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2M"
+                                                            onClicked: seatSelectionView.handleSeatClick("2M")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat3M
                                                             x: 580
                                                             y: 404
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "3M"
+                                                            isBooked: seatSelectionView.isSeatBooked("3M")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3M"
+                                                            onClicked: seatSelectionView.handleSeatClick("3M")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat4M
                                                             x: 580
                                                             y: 475
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "4M"
+                                                            isBooked: seatSelectionView.isSeatBooked("4M")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4M"
+                                                            onClicked: seatSelectionView.handleSeatClick("4M")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat5M
                                                             x: 580
                                                             y: 513
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "5M"
+                                                            isBooked: seatSelectionView.isSeatBooked("5M")
+                                                            isSelected: seatSelectionView.selectedSeatId === "5M"
+                                                            onClicked: seatSelectionView.handleSeatClick("5M")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat6M
                                                             x: 580
                                                             y: 552
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "6M"
+                                                            isBooked: seatSelectionView.isSeatBooked("6M")
+                                                            isSelected: seatSelectionView.selectedSeatId === "6M"
+                                                            onClicked: seatSelectionView.handleSeatClick("6M")
                                                         }
 
                                                         // Left section - Column 2 (N seats)
                                                         SeatButton {
-                                                            id: seat1N
                                                             x: 530
                                                             y: 327
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "1N"
+                                                            isBooked: seatSelectionView.isSeatBooked("1N")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1N"
+                                                            onClicked: seatSelectionView.handleSeatClick("1N")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2N
                                                             x: 530
                                                             y: 365
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "2N"
+                                                            isBooked: seatSelectionView.isSeatBooked("2N")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2N"
+                                                            onClicked: seatSelectionView.handleSeatClick("2N")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat3N
                                                             x: 530
                                                             y: 404
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "3N"
+                                                            isBooked: seatSelectionView.isSeatBooked("3N")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3N"
+                                                            onClicked: seatSelectionView.handleSeatClick("3N")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat4N
                                                             x: 530
                                                             y: 475
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "4N"
+                                                            isBooked: seatSelectionView.isSeatBooked("4N")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4N"
+                                                            onClicked: seatSelectionView.handleSeatClick("4N")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat5N
                                                             x: 530
                                                             y: 513
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "5N"
+                                                            isBooked: seatSelectionView.isSeatBooked("5N")
+                                                            isSelected: seatSelectionView.selectedSeatId === "5N"
+                                                            onClicked: seatSelectionView.handleSeatClick("5N")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat6N
                                                             x: 530
                                                             y: 552
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "6N"
+                                                            isBooked: seatSelectionView.isSeatBooked("6N")
+                                                            isSelected: seatSelectionView.selectedSeatId === "6N"
+                                                            onClicked: seatSelectionView.handleSeatClick("6N")
                                                         }
 
                                                         // Left section - Column 3 (O seats)
                                                         SeatButton {
-                                                            id: seat1O
                                                             x: 480
                                                             y: 327
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "1O"
+                                                            isBooked: seatSelectionView.isSeatBooked("1O")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1O"
+                                                            onClicked: seatSelectionView.handleSeatClick("1O")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2O
                                                             x: 480
                                                             y: 365
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "2O"
+                                                            isBooked: seatSelectionView.isSeatBooked("2O")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2O"
+                                                            onClicked: seatSelectionView.handleSeatClick("2O")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat3O
                                                             x: 480
                                                             y: 404
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "3O"
+                                                            isBooked: seatSelectionView.isSeatBooked("3O")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3O"
+                                                            onClicked: seatSelectionView.handleSeatClick("3O")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat4O
                                                             x: 480
                                                             y: 475
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "4O"
+                                                            isBooked: seatSelectionView.isSeatBooked("4O")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4O"
+                                                            onClicked: seatSelectionView.handleSeatClick("4O")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat5O
                                                             x: 480
                                                             y: 513
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "5O"
+                                                            isBooked: seatSelectionView.isSeatBooked("5O")
+                                                            isSelected: seatSelectionView.selectedSeatId === "5O"
+                                                            onClicked: seatSelectionView.handleSeatClick("5O")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat6O
                                                             x: 480
                                                             y: 552
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "6O"
+                                                            isBooked: seatSelectionView.isSeatBooked("6O")
+                                                            isSelected: seatSelectionView.selectedSeatId === "6O"
+                                                            onClicked: seatSelectionView.handleSeatClick("6O")
                                                         }
 
                                                         // Left section - Column 4 (P seats)
                                                         SeatButton {
-                                                            id: seat1P
                                                             x: 430
                                                             y: 327
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "1P"
+                                                            isBooked: seatSelectionView.isSeatBooked("1P")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1P"
+                                                            onClicked: seatSelectionView.handleSeatClick("1P")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2P
                                                             x: 430
                                                             y: 365
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "2P"
+                                                            isBooked: seatSelectionView.isSeatBooked("2P")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2P"
+                                                            onClicked: seatSelectionView.handleSeatClick("2P")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat3P
                                                             x: 430
                                                             y: 404
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "3P"
+                                                            isBooked: seatSelectionView.isSeatBooked("3P")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3P"
+                                                            onClicked: seatSelectionView.handleSeatClick("3P")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat4P
                                                             x: 430
                                                             y: 475
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "4P"
+                                                            isBooked: seatSelectionView.isSeatBooked("4P")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4P"
+                                                            onClicked: seatSelectionView.handleSeatClick("4P")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat5P
                                                             x: 430
                                                             y: 513
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "5P"
+                                                            isBooked: seatSelectionView.isSeatBooked("5P")
+                                                            isSelected: seatSelectionView.selectedSeatId === "5P"
+                                                            onClicked: seatSelectionView.handleSeatClick("5P")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat6P
                                                             x: 430
                                                             y: 552
                                                             width: 35
                                                             height: 35
                                                             seatNumber: "6P"
+                                                            isBooked: seatSelectionView.isSeatBooked("6P")
+                                                            isSelected: seatSelectionView.selectedSeatId === "6P"
+                                                            onClicked: seatSelectionView.handleSeatClick("6P")
                                                         }
 
                                                         // Front section (larger rectangular seats) - Column 1 (Q seats)
                                                         SeatButton {
-                                                            id: seat1Q
                                                             x: 315
                                                             y: 360
                                                             width: 40
                                                             height: 32
                                                             seatNumber: "1Q"
+                                                            isBooked: seatSelectionView.isSeatBooked("1Q")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1Q"
+                                                            onClicked: seatSelectionView.handleSeatClick("1Q")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2Q
                                                             x: 315
                                                             y: 398
                                                             width: 40
                                                             height: 32
                                                             seatNumber: "2Q"
+                                                            isBooked: seatSelectionView.isSeatBooked("2Q")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2Q"
+                                                            onClicked: seatSelectionView.handleSeatClick("2Q")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat3Q
                                                             x: 315
                                                             y: 481
                                                             width: 40
                                                             height: 32
                                                             seatNumber: "3Q"
+                                                            isBooked: seatSelectionView.isSeatBooked("3Q")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3Q"
+                                                            onClicked: seatSelectionView.handleSeatClick("3Q")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat4Q
                                                             x: 315
                                                             y: 519
                                                             width: 40
                                                             height: 32
                                                             seatNumber: "4Q"
+                                                            isBooked: seatSelectionView.isSeatBooked("4Q")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4Q"
+                                                            onClicked: seatSelectionView.handleSeatClick("4Q")
                                                         }
 
                                                         // Front section - Column 2 (R seats)
                                                         SeatButton {
-                                                            id: seat1R
                                                             x: 265
                                                             y: 360
                                                             width: 40
                                                             height: 32
                                                             seatNumber: "1R"
+                                                            isBooked: seatSelectionView.isSeatBooked("1R")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1R"
+                                                            onClicked: seatSelectionView.handleSeatClick("1R")
                                                         }
 
                                                         SeatButton {
-                                                            id: seat2R
                                                             x: 265
                                                             y: 398
                                                             width: 40
                                                             height: 32
                                                             seatNumber: "2R"
+                                                            isBooked: seatSelectionView.isSeatBooked("2R")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2R"
+                                                            onClicked: seatSelectionView.handleSeatClick("2R")
                                                         }
 
                                                         SeatButton {
@@ -1775,6 +1979,9 @@ Window {
                                                             width: 40
                                                             height: 32
                                                             seatNumber: "3R"
+                                                            isBooked: seatSelectionView.isSeatBooked("3R")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3R"
+                                                            onClicked: seatSelectionView.handleSeatClick("3R")
                                                         }
 
                                                         SeatButton {
@@ -1784,6 +1991,9 @@ Window {
                                                             width: 40
                                                             height: 32
                                                             seatNumber: "4R"
+                                                            isBooked: seatSelectionView.isSeatBooked("4R")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4R"
+                                                            onClicked: seatSelectionView.handleSeatClick("4R")
                                                         }
 
                                                         // Front section - Column 3 (S seats)
@@ -1794,6 +2004,9 @@ Window {
                                                             width: 40
                                                             height: 32
                                                             seatNumber: "1S"
+                                                            isBooked: seatSelectionView.isSeatBooked("1S")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1S"
+                                                            onClicked: seatSelectionView.handleSeatClick("1S")
                                                         }
 
                                                         SeatButton {
@@ -1803,6 +2016,9 @@ Window {
                                                             width: 40
                                                             height: 32
                                                             seatNumber: "2S"
+                                                            isBooked: seatSelectionView.isSeatBooked("2S")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2S"
+                                                            onClicked: seatSelectionView.handleSeatClick("2S")
                                                         }
 
                                                         SeatButton {
@@ -1812,6 +2028,9 @@ Window {
                                                             width: 40
                                                             height: 32
                                                             seatNumber: "3S"
+                                                            isBooked: seatSelectionView.isSeatBooked("3S")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3S"
+                                                            onClicked: seatSelectionView.handleSeatClick("3S")
                                                         }
 
                                                         SeatButton {
@@ -1821,6 +2040,9 @@ Window {
                                                             width: 40
                                                             height: 32
                                                             seatNumber: "4S"
+                                                            isBooked: seatSelectionView.isSeatBooked("4S")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4S"
+                                                            onClicked: seatSelectionView.handleSeatClick("4S")
                                                         }
 
                                                         // Far right single column seats (T seats)
@@ -1829,6 +2051,9 @@ Window {
                                                             x: 1117
                                                             y: 366
                                                             seatNumber: "1T"
+                                                            isBooked: seatSelectionView.isSeatBooked("1T")
+                                                            isSelected: seatSelectionView.selectedSeatId === "1T"
+                                                            onClicked: seatSelectionView.handleSeatClick("1T")
                                                         }
 
                                                         SeatButton {
@@ -1836,6 +2061,9 @@ Window {
                                                             x: 1117
                                                             y: 405
                                                             seatNumber: "2T"
+                                                            isBooked: seatSelectionView.isSeatBooked("2T")
+                                                            isSelected: seatSelectionView.selectedSeatId === "2T"
+                                                            onClicked: seatSelectionView.handleSeatClick("2T")
                                                         }
 
                                                         SeatButton {
@@ -1843,6 +2071,9 @@ Window {
                                                             x: 1117
                                                             y: 477
                                                             seatNumber: "3T"
+                                                            isBooked: seatSelectionView.isSeatBooked("3T")
+                                                            isSelected: seatSelectionView.selectedSeatId === "3T"
+                                                            onClicked: seatSelectionView.handleSeatClick("3T")
                                                         }
 
                                                         SeatButton {
@@ -1850,6 +2081,9 @@ Window {
                                                             x: 1117
                                                             y: 516
                                                             seatNumber: "4T"
+                                                            isBooked: seatSelectionView.isSeatBooked("4T")
+                                                            isSelected: seatSelectionView.selectedSeatId === "4T"
+                                                            onClicked: seatSelectionView.handleSeatClick("4T")
                                                         }
                                                     }
                                                 }

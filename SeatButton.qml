@@ -12,6 +12,9 @@ Rectangle {
     property bool isSelected: false
     property string seatNumber: ""
 
+    // Signal that parent can connect to
+    signal clicked()
+
     // Color logic:
     // Gray (default/available) -> Teal/Green (when user clicks) -> Yellow (already booked from backend)
     color: {
@@ -37,7 +40,7 @@ Rectangle {
         NumberAnimation { duration: 150 }
     }
 
-    // Click interaction
+    // Click interaction - emit signal for parent to handle
     MouseArea {
         id: mouseArea
         anchors.fill: parent
@@ -45,9 +48,8 @@ Rectangle {
         cursorShape: isBooked ? Qt.ForbiddenCursor : Qt.PointingHandCursor
 
         onClicked: {
-            if (!isBooked) {
-                root.isSelected = !root.isSelected
-            }
+            // Emit the signal so parent can handle it
+            root.clicked()
         }
     }
 
