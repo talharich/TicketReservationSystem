@@ -27,10 +27,17 @@ Window {
             visible: !isLoggedIn
             color: "#0f1419"
 
+            Image {
+                anchors.fill: parent
+                source: "file:///D:/TicketReservationSystem/images/loginbg3.jpg"
+                fillMode: Image.PreserveAspectCrop
+                opacity: 0.3
+            }
+
             Rectangle {
                 anchors.centerIn: parent
-                width: 600
-                height: 500
+                width: 500
+                height: 450
                 color: "#1c2128"
                 radius: 12
 
@@ -49,6 +56,7 @@ Window {
                     TextField {
                         id: usernameField
                         width: 400
+                        height: 35
                         placeholderText: "Username"
                         font.pixelSize: 18
                         background: Rectangle {
@@ -61,6 +69,7 @@ Window {
                     TextField {
                         id: passwordField
                         width: 400
+                        height: 35
                         placeholderText: "Password"
                         echoMode: TextInput.Password
                         font.pixelSize: 18
