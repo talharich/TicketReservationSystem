@@ -17,16 +17,30 @@ qt_add_executable(appTicketResevationSystem2
     loginhandler.cpp
     flighthandler.h
     flighthandler.cpp
-    resources.qrc
 )
 
 qt_add_qml_module(appTicketResevationSystem2
     URI TicketResevationSystem2
     VERSION 1.0
-    QML_FILES Main.qml
-    QML_FILES SeatSelection.qml
-    QML_FILES SeatButton.qml
+    QML_FILES
+        Main.qml
+        SeatSelection.qml
+        SeatButton.qml
     SOURCES loginhandler.h
+)
+
+# Add images as separate resource
+set(IMAGE_FILES
+    images/loginbg3.jpg
+    images/login-bg1.jpg
+    images/login-bg2.jpg
+    "images/Airplane seating chart.png"
+)
+
+qt_add_resources(appTicketResevationSystem2 "images"
+    PREFIX "/images"
+    BASE "images"
+    FILES ${IMAGE_FILES}
 )
 
 set_target_properties(appTicketResevationSystem2 PROPERTIES

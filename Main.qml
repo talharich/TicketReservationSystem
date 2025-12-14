@@ -29,7 +29,7 @@ Window {
 
             Image {
                 anchors.fill: parent
-                source: "file:///D:/TicketReservationSystem/images/loginbg3.jpg"
+                source: "qrc:/images/loginbg3.jpg"
                 fillMode: Image.PreserveAspectCrop
                 opacity: 0.3
             }

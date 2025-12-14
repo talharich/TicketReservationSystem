@@ -1,5 +1,8 @@
 <RCC>
-    <qresource prefix="/images">
+    <qresource prefix="/">
         <file>images/Airplane seating chart.png</file>
+        <file>images/login-bg1.jpg</file>
+        <file>images/login-bg2.jpg</file>
+        <file>images/loginbg3.jpg</file>
     </qresource>
 </RCC>
